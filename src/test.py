@@ -1,8 +1,8 @@
 from pyspark.sql import SparkSession
 
-# Initialiseer een SparkSession
 spark = SparkSession.builder \
     .appName("Simple PySpark Example") \
+    .config("spark.driver.bindAddress", "127.0.0.1") \
     .getOrCreate()
 
 # Creëer een DataFrame met één kolom en één rij met de tekst 'Hello, Spark!'
@@ -13,3 +13,6 @@ df.show()
 
 # Sluit de SparkSession netjes af
 spark.stop()
+
+import pyspark
+print("Hello")
