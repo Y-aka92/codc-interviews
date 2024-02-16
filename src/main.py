@@ -82,7 +82,7 @@ def main(client_info_path, financial_info_path, countries):
 if __name__ == "__main__":
     client_info_path = 'file:///C:/codc-interviews/data/samples/sample_dataset_one.csv'
     financial_info_path = 'file:///C:/codc-interviews/data/samples/sample_dataset_two.csv'
-    countries = ['Nederland', 'Duitsland']
+    countries = ['Netherlands', 'United Kingdom']
 
     main(client_info_path, financial_info_path, countries)
 
