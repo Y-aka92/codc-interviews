@@ -7,6 +7,7 @@ def create_spark_session():
     """Create and return a Spark session."""
     return SparkSession.builder \
         .appName("KommatiPara Data Processing") \
+        .config("spark.hadoop.validateOutputSpecs", "false") \
         .config("spark.driver.bindAddress", "127.0.0.1") \
         .getOrCreate()
 
