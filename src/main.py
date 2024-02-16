@@ -1,6 +1,11 @@
 import os
+# Set the PYSPARK_PYTHON environment variable
 os.environ['PYSPARK_PYTHON'] = 'python'
-os.environ["HADOOP_HOME"] = r"C:\hadoop"  # Note the raw string literal with 'r' or use "C:\\hadoop\\bin"
+# Set the HADOOP_HOME environment variable
+os.environ["HADOOP_HOME"] = "C:\\hadoop"
+# Add the Hadoop bin directory to the PATH
+os.environ["PATH"] += os.pathsep + os.path.join(os.environ["HADOOP_HOME"], 'bin')
+
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
