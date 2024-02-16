@@ -1,0 +1,10 @@
+venv/
+client_data/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+.build/
+/dist/
