@@ -1,10 +1,14 @@
-import sys
+import os
+os.environ['PYSPARK_PYTHON'] = 'python'
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
 def create_spark_session():
     """Create and return a Spark session."""
-    return SparkSession.builder.appName("KommatiPara Data Processing").getOrCreate()
+    return SparkSession.builder \
+        .appName("KommatiPara Data Processing") \
+        .config("spark.driver.bindAddress", "127.0.0.1") \
+        .getOrCreate()
 
 def read_data(spark, file_path):
     """Read data from a CSV file into a Spark DataFrame."""
@@ -35,6 +39,7 @@ def rename_columns(df, columns_mapping):
 
 def main(client_info_path, financial_info_path, countries):
     spark = create_spark_session()
+
 
     # Read the datasets
     clients_df = read_data(spark, client_info_path)
@@ -67,8 +72,8 @@ def main(client_info_path, financial_info_path, countries):
     final_df.write.mode('overwrite').csv('client_data/output.csv', header=True)
 
 if __name__ == "__main__":
-    client_info_path = 'file:///C:/codc-interviews/data/client_info.csv'
-    financial_info_path = 'file:///C:/codc-interviews/data/financial_info.csv'
+    client_info_path = 'file:///C:/codc-interviews/data/samples/sample_dataset_one.csv'
+    financial_info_path = 'file:///C:/codc-interviews/data/samples/sample_dataset_two.csv'
     countries = ['Nederland', 'Duitsland']
 
     main(client_info_path, financial_info_path, countries)
