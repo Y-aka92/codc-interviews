@@ -64,7 +64,7 @@ def main(client_info_path, financial_info_path, countries):
     final_df = rename_columns(joined_df, columns_mapping)
 
     # Save the output
-    final_df.write.csv('client_data/output.csv', header=True)
+    final_df.write.mode('overwrite').csv('client_data/output.csv', header=True)
 
 if __name__ == "__main__":
     client_info_path = sys.argv[1]
