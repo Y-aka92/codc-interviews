@@ -67,8 +67,8 @@ def main(client_info_path, financial_info_path, countries):
     final_df.write.mode('overwrite').csv('client_data/output.csv', header=True)
 
 if __name__ == "__main__":
-    client_info_path = 'C:/codc-interviews/data/client_info.csv'
-    financial_info_path = 'C:/codc-interviews/data/financial_info.csv'
+    client_info_path = 'file:///C:/codc-interviews/data/client_info.csv'
+    financial_info_path = 'file:///C:/codc-interviews/data/financial_info.csv'
     countries = ['Nederland', 'Duitsland']
 
     main(client_info_path, financial_info_path, countries)
