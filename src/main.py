@@ -5,8 +5,7 @@ os.environ['PYSPARK_PYTHON'] = 'python'
 os.environ["HADOOP_HOME"] = "C:\\hadoop"
 # Add the Hadoop bin directory to the PATH
 os.environ["PATH"] += os.pathsep + os.path.join(os.environ["HADOOP_HOME"], 'bin')
-
-
+import pandas as pd  # Importeer Pandas
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
@@ -44,10 +43,8 @@ def rename_columns(df, columns_mapping):
         df = df.withColumnRenamed(old_name, new_name)
     return df
 
-
 def main(client_info_path, financial_info_path, countries):
     spark = create_spark_session()
-
 
     # Read the datasets
     clients_df = read_data(spark, client_info_path)
@@ -76,8 +73,15 @@ def main(client_info_path, financial_info_path, countries):
     # Rename columns after the join
     final_df = rename_columns(joined_df, columns_mapping)
 
-    # Save the output
-    final_df.write.mode('overwrite').csv('client_data/output.csv', header=True)
+    # Display the final DataFrame
+    final_df.show()
+
+    # Converteer het final_df naar een Pandas DataFrame
+    pandas_df = final_df.toPandas()
+
+    # Schrijf het Pandas DataFrame naar een CSV-bestand
+    pandas_df.to_csv("C:/codc-interviews/data/output/final_output.csv", index=False)
+
 
 if __name__ == "__main__":
     client_info_path = 'file:///C:/codc-interviews/data/samples/sample_dataset_one.csv'
@@ -85,6 +89,3 @@ if __name__ == "__main__":
     countries = ['Netherlands', 'United Kingdom']
 
     main(client_info_path, financial_info_path, countries)
-
-
-
