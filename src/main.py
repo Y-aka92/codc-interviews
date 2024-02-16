@@ -1,6 +1,6 @@
 import os
 os.environ['PYSPARK_PYTHON'] = 'python'
-os.environ["HADOOP_HOME"] = r"C:\hadoop\bin"  # Note the raw string literal with 'r' or use "C:\\hadoop\\bin"
+os.environ["HADOOP_HOME"] = r"C:\hadoop"  # Note the raw string literal with 'r' or use "C:\\hadoop\\bin"
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
