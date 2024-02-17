@@ -1,4 +1,6 @@
 import unittest
+import sys
+sys.path.append('../src')
 from unittest.mock import Mock
 from main import filter_clients_by_country
 
