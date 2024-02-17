@@ -114,4 +114,4 @@ if __name__ == "__main__":
 
     main(client_info_path, financial_info_path, countries)
 
-    logging
+    logging.info("End of the script")
