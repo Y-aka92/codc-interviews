@@ -31,6 +31,3 @@ jobs:
     - name: Run tests
       run: pytest
       working-directory: ./tests
-
-      # Run your tests here, adjust the command if you use a different test runner
-      pytest
