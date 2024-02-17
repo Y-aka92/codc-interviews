@@ -37,7 +37,7 @@ def join_data(df1, df2, join_col):
 def remove_credit_card_number(df):
     """Remove credit card number from DataFrame."""
     logging.info("Removing credit card number from DataFrame")
-    return df.drop("credit_card_number")
+    return df.drop("cc_n")
 
 def rename_columns(df, columns_mapping):
     """Rename columns in the DataFrame as specified."""

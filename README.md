@@ -12,7 +12,7 @@ This Python script is designed to process and analyze datasets for a company nam
 
 
 ## Requirements
-- Python 3.8
+- Python 3.10
 - PySpark
 - Pandas
 
