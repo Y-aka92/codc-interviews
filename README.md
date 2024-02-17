@@ -20,7 +20,7 @@ This Python script is designed to process and analyze datasets for a company nam
 
 Run the script from the command line with the paths to the client and financial information datasets and the countries of interest. For example:
 
-python main_test.py "C:/codc-interviews/data/client_info.csv" "C:/codc-interviews/data/financial_info.csv" "Netherlands,United Kingdom"
+python main.py "C:/codc-interviews/data/client_info.csv" "C:/codc-interviews/data/financial_info.csv" "Netherlands,United Kingdom"
 
 This command will process the datasets based on the specified parameters and save the output in the 'client_data' directory.
 
