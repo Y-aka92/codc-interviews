@@ -1,14 +1,16 @@
 import os
+import sys  # Voeg deze regel toe
+import pandas as pd
+
 # Set the PYSPARK_PYTHON environment variable
 os.environ['PYSPARK_PYTHON'] = 'python'
 # Set the HADOOP_HOME environment variable
 os.environ["HADOOP_HOME"] = "C:\\hadoop"
 # Add the Hadoop bin directory to the PATH
 os.environ["PATH"] += os.pathsep + os.path.join(os.environ["HADOOP_HOME"], 'bin')
-import pandas as pd  # Importeer Pandas
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
-
 def create_spark_session():
     """Create and return a Spark session."""
     return SparkSession.builder \
@@ -97,3 +99,5 @@ if __name__ == "__main__":
     countries = sys.argv[3].split(',')
 
     main(client_info_path, financial_info_path, countries)
+
+
