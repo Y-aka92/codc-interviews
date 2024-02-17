@@ -1,31 +1,17 @@
-import os
 import sys
 import pandas as pd
 import logging
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-# Use logging in your script
-logging.info("Starting the script")
-
-# Set PYSPARK_PYTHON environment variable
-os.environ['PYSPARK_PYTHON'] = 'python'
-# Set HADOOP_HOME environment variable
-os.environ["HADOOP_HOME"] = "C:\\hadoop"
-# Add Hadoop bin directory to PATH
-os.environ["PATH"] += os.pathsep + os.path.join(os.environ["HADOOP_HOME"], 'bin')
-
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
 
 def create_spark_session():
     """Create and return a Spark session."""
     logging.info("Creating Spark session")
     return SparkSession.builder \
         .appName("KommatiPara Data Processing") \
-        .config("spark.hadoop.validateOutputSpecs", "false") \
-        .config("spark.driver.bindAddress", "127.0.0.1") \
         .getOrCreate()
 
 def read_data(spark, file_path):
@@ -102,16 +88,12 @@ def main(client_info_path, financial_info_path, countries):
     logging.info(f"Data saved in {output_path}")
 
 if __name__ == "__main__":
-    # Check if all required arguments are provided
     if len(sys.argv) != 4:
-        logging.error("Usage: script.py <path_to_client_info> <path_to_financial_info> <country1,country2,...>")
+        logging.error("Incorrect number of arguments provided")
         sys.exit(1)
 
-    # Get paths and countries from command line
     client_info_path = sys.argv[1]
     financial_info_path = sys.argv[2]
     countries = sys.argv[3].split(',')
 
     main(client_info_path, financial_info_path, countries)
-
-    logging.info("End of the script")
