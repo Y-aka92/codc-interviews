@@ -1,5 +1,4 @@
 venv/
-client_data/
 *.pyc
 __pycache__/
 *.pyo
