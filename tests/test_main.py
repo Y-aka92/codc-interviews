@@ -1,4 +1,5 @@
 import unittest
+import pandas as pd  # Importeer Pandas hier
 from main import filter_clients_by_country
 
 class TestMainMethods(unittest.TestCase):
