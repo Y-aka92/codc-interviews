@@ -4,8 +4,10 @@ import logging
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 def create_spark_session():
     """Create and return a Spark session."""
@@ -93,6 +95,7 @@ def main(client_info_path, financial_info_path, countries):
     output_path = "C:/codc-interviews/client_data/final_output.csv"
     pandas_df.to_csv(output_path, index=False)
     logging.info(f"Data saved in {output_path}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
