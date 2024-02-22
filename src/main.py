@@ -7,6 +7,7 @@ from pyspark.sql.functions import col
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+
 def create_spark_session():
     """Create and return a Spark session."""
     logging.info("Creating Spark session")
