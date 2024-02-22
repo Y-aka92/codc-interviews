@@ -7,11 +7,11 @@ name: "Code scanning"
 
 on:
   push:
-    branches: [ master ]
+    branches: ["master"]
     paths:
       - 'web/**'
   pull_request:
-    branches: [ master ]
+    branches: ["master"]
     paths:
       - 'web/**'
 
