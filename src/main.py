@@ -107,3 +107,4 @@ if __name__ == "__main__":
     countries = sys.argv[3].split(',')
 
     main(client_info_path, financial_info_path, countries)
+
