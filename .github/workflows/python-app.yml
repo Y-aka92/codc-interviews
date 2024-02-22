@@ -5,6 +5,7 @@ on:
     branches: ["master"] # Adjust depending on your default branch
   pull_request:
     branches: ["master" ] # Adjust depending on your default branch
+  workflow_dispatch:
 
 jobs:
   build:
