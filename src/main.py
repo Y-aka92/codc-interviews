@@ -14,30 +14,36 @@ def create_spark_session():
         .appName("KommatiPara Data Processing") \
         .getOrCreate()
 
+
 def read_data(spark, file_path):
     """Read data from a CSV file into a Spark DataFrame."""
     logging.info(f"Reading data from {file_path}")
     return spark.read.csv(file_path, header=True, inferSchema=True)
+
 
 def filter_clients_by_country(df, countries):
     """Filter clients by country."""
     logging.info(f"Filtering clients by countries: {countries}")
     return df.filter(col("country").isin(countries))
 
+
 def remove_personal_info(df, columns_to_keep):
     """Remove personal identifiable information, keeping specified columns."""
     logging.info("Removing personal identifiable information")
     return df.select([col for col in df.columns if col in columns_to_keep])
+
 
 def join_data(df1, df2, join_col):
     """Join two DataFrames on a specified column."""
     logging.info(f"Joining data on column: {join_col}")
     return df1.join(df2, df1[join_col] == df2[join_col], 'inner').drop(df2[join_col])
 
+
 def remove_credit_card_number(df):
     """Remove credit card number from DataFrame."""
     logging.info("Removing credit card number from DataFrame")
     return df.drop("cc_n")
+
 
 def rename_columns(df, columns_mapping):
     """Rename columns in the DataFrame as specified."""
@@ -45,6 +51,7 @@ def rename_columns(df, columns_mapping):
     for old_name, new_name in columns_mapping.items():
         df = df.withColumnRenamed(old_name, new_name)
     return df
+
 
 def main(client_info_path, financial_info_path, countries):
     spark = create_spark_session()
