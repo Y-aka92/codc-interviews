@@ -1,9 +1,10 @@
-import unittest
 import sys
+import unittest
 from pyspark.sql import SparkSession
 from pyspark.sql import Row
 sys.path.append('../src')
 from main import filter_clients_by_country
+
 
 class TestMainMethods(unittest.TestCase):
     # setUp method to initialize SparkSession and create a test DataFrame
@@ -28,6 +29,7 @@ class TestMainMethods(unittest.TestCase):
     # tearDown method to stop the SparkSession
     def tearDown(self):
         self.spark.stop()
+
 
 if __name__ == '__main__':
     unittest.main()
