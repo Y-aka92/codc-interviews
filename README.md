@@ -15,6 +15,9 @@ This Python script is designed to process and analyze datasets for a company nam
 - Python 3.10
 - PySpark
 - Pandas
+- Flake8
+- Pytest
+- (Chispa)
 
 ## Usage
 
