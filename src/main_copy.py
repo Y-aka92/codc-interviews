@@ -1,22 +1,17 @@
 import sys
 import pandas as pd
 import logging
-from logging.handlers import RotatingFileHandler
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
-# Configureer en initialiseren van logger
-logger = logging.getLogger("KommatiParaLogger")
-logger.setLevel(logging.INFO)
-handler = RotatingFileHandler('kommatipara.log', maxBytes=1000000, backupCount=5)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def create_spark_session():
     """Create and return a Spark session."""
-    logger.info("Creating Spark session")
+    logging.info("Creating Spark session")
     return SparkSession.builder \
         .appName("KommatiPara Data Processing") \
         .getOrCreate()
@@ -24,38 +19,37 @@ def create_spark_session():
 
 def read_data(spark, file_path):
     """Read data from a CSV file into a Spark DataFrame."""
-    logger.info(f"Reading data from {file_path}")
+    logging.info(f"Reading data from {file_path}")
     return spark.read.csv(file_path, header=True, inferSchema=True)
-
 
 
 def filter_clients_by_country(df, countries):
     """Filter clients by country."""
-    logger.info(f"Filtering clients by countries: {countries}")
+    logging.info(f"Filtering clients by countries: {countries}")
     return df.filter(col("country").isin(countries))
 
 
 def remove_personal_info(df, columns_to_keep):
     """Remove personal identifiable information, keeping specified columns."""
-    logger.info("Removing personal identifiable information")
+    logging.info("Removing personal identifiable information")
     return df.select([col for col in df.columns if col in columns_to_keep])
 
 
 def join_data(df1, df2, join_col):
     """Join two DataFrames on a specified column."""
-    logger.info(f"Joining data on column: {join_col}")
+    logging.info(f"Joining data on column: {join_col}")
     return df1.join(df2, df1[join_col] == df2[join_col], 'inner').drop(df2[join_col])
 
 
 def remove_credit_card_number(df):
     """Remove credit card number from DataFrame."""
-    logger.info("Removing credit card number from DataFrame")
+    logging.info("Removing credit card number from DataFrame")
     return df.drop("cc_n")
 
 
 def rename_columns(df, columns_mapping):
     """Rename columns in the DataFrame as specified."""
-    logger.info("Renaming columns")
+    logging.info("Renaming columns")
     for old_name, new_name in columns_mapping.items():
         df = df.withColumnRenamed(old_name, new_name)
     return df
@@ -100,14 +94,12 @@ def main(client_info_path, financial_info_path, countries):
     # Write the Pandas DataFrame to a CSV file in the client_data directory
     output_path = "C:/codc-interviews/client_data/final_output.csv"
     pandas_df.to_csv(output_path, index=False)
-    logger.info(f"Data saved in {output_path}")
+    logging.info(f"Data saved in {output_path}")
 
-    pandas_df.to_csv(output_path, index=False)
-    logger.info(f"Data saved in {output_path}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        logger.error("Incorrect number of arguments provided")
+        logging.error("Incorrect number of arguments provided")
         sys.exit(1)
 
     client_info_path = sys.argv[1]

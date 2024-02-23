@@ -1,0 +1,11 @@
+2024-02-23 09:18:06,430 - KommatiParaLogger - INFO - Data saved in C:/codc-interviews/client_data/final_output.csv
+2024-02-23 10:01:12,347 - KommatiParaLogger - INFO - Creating Spark session
+2024-02-23 10:01:16,061 - KommatiParaLogger - INFO - Reading data from C:/codc-interviews/data/client_info.csv
+2024-02-23 10:01:19,854 - KommatiParaLogger - INFO - Reading data from C:/codc-interviews/data/financial_info.csv
+2024-02-23 10:01:20,096 - KommatiParaLogger - INFO - Filtering clients by countries: ['Netherlands', 'United Kingdom']
+2024-02-23 10:01:20,117 - KommatiParaLogger - INFO - Removing personal identifiable information
+2024-02-23 10:01:20,139 - KommatiParaLogger - INFO - Removing credit card number from DataFrame
+2024-02-23 10:01:20,146 - KommatiParaLogger - INFO - Joining data on column: id
+2024-02-23 10:01:20,175 - KommatiParaLogger - INFO - Renaming columns
+2024-02-23 10:01:21,661 - KommatiParaLogger - INFO - Data saved in C:/codc-interviews/client_data/final_output.csv
+2024-02-23 10:01:21,663 - KommatiParaLogger - INFO - Data saved in C:/codc-interviews/client_data/final_output.csv
